@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Anim Alisization OP</title>
+</head>
+
+<body>
+    <section></section>
+    <script>
+        function createParticles() {
+            const section = document.querySelector('section');
+            const particle = document.createElement('span');
+
+            var size = Math.random() * 5;
+
+            particle.style.width = 20 + size + 'px';
+            particle.style.height = 20 + size + 'px';
+
+            // размер вьюпорта
+            const windowWidth = document.documentElement.clientWidth;
+            const windowHeight = document.documentElement.clientHeight;
+
+            // рандом в нужном интервале
+            function randomInt() {
+                let left;
+                let top;
+                if (Math.random() > 0.5) {
+                    if (Math.random() > 0.5) {
+                        left = Math.random() * ((windowWidth + 120) - windowWidth) + windowWidth;
+                        top = Math.random() * windowHeight;
+                    }
+                    else {
+                        left = Math.random() * (-120);
+                        top = Math.random() * windowHeight;
+                    }
+                } else {
+                    if (Math.random() > 0.5) {
+                        top = Math.random() * ((windowHeight + 120) - windowHeight) + windowHeight;
+                        left = Math.random() * windowWidth;
+                    }
+                    else {
+                        left = Math.random() * windowWidth;
+                        top = Math.random() * (-120);
+                    }
+                }
+
+                particle.style.left = left + 'px';
+                particle.style.top = top + 'px';
+            }
+            randomInt();
+
+            section.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1500)
+        }
+
+        setInterval(createParticles, 150);
+
+    </script>
+</body>
+
+</html>
